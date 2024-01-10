@@ -2,11 +2,19 @@ using System;
 
 namespace PametniDomAPP {
 	public class Naprava {
-		private int idNaprave;
-		private string n_ime;
-		private DateTime prvic_povezan;
+		public int Id{  get; set; }
+		public string n_ime { get; set; }
+        public DateTime prvic_povezan { get; set; }
 
-		public void SetImeNaprave(ref string n_ime) {
+		public Naprava() { }
+
+		public Naprava(string n_ime, DateTime prvic_povezan)
+        {
+            this.n_ime = n_ime;
+            this.prvic_povezan = prvic_povezan;
+        }
+
+        public void SetImeNaprave(ref string n_ime) {
 			throw new System.NotImplementedException("Not implemented");
 		}
 

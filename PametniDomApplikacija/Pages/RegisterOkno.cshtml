@@ -1,0 +1,81 @@
+﻿@page
+@model PametniDomApplikacija.Pages.RegisterOknoModel
+@{
+    ViewData["Title"] = "Registracija";
+}
+
+
+<style>
+
+
+    form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 400px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+        border: 1px solid black;
+        border-radius: 15px;
+    }
+
+    span {
+        color: black;
+        font-size: 12px;
+        display: block;
+        margin-top: 4px;
+    }
+
+    button {
+        background-color: black;
+        color: #fff;
+        padding: 10px;
+        padding-right: 20px;
+        padding-left: 20px;
+        border: 1px solid black;
+        border-radius: 15px;
+    }
+
+</style>
+
+
+
+
+
+<div style="margin:5%" class="d-flex flex-column justify-content-center align-items-center">
+    <form name="RegisterForm" method="post" asp-page-handler="Register">
+        <h2>@ViewData["Title"]</h2>
+        <div>
+            <label asp-for="Naziv_Uporabnika">Naziv</label>
+            <input placeholder="Naziv" asp-for="Naziv_Uporabnika" />
+            <span asp-validation-for="Naziv_Uporabnika"></span>
+        </div>
+        <div>
+            <label asp-for="Enaslov">E-naslov</label>
+            <input placeholder="Enaslov" asp-for="Enaslov" />
+            <span asp-validation-for="Enaslov"></span>
+        </div>
+        <div>
+            <label asp-for="Geslo">Geslo</label>
+            <input placeholder="Geslo" asp-for="Geslo" type="password" />
+            <span asp-validation-for="Geslo"></span>
+        </div>
+        <div>
+            <label asp-for="pGeslo">Ponovno geslo</label>
+            <input placeholder="Geslo" asp-for="pGeslo" type="password" />
+            <span asp-validation-for="pGeslo"></span>
+        </div>
+   
+        <button type="submit">Register</button>
+    </form>
+</div>

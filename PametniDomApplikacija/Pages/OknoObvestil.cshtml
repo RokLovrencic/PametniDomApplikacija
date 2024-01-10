@@ -1,0 +1,51 @@
+﻿@page
+@model PametniDomApplikacija.Pages.OknoObvestilModel
+@{
+    ViewData["Title"] = "Obvestila";
+}
+
+<style>
+    .notification {
+        background-color: #f8d7da;
+        color: #721c24;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #f5c6cb;
+        border-radius: 5px;
+    }
+
+        .notification span {
+            font-weight: bold;
+        }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-7" style="margin-top: 15px">
+            <h2>Vse naprave uporabnika</h2>
+            <div>
+                @foreach (var o in Model.ObvestilaList)
+                {
+                    <div class="notification">
+                        <span>Notifikacija:</span> @o.vsebina
+                        <br />
+                        <span>Naprava:</span>
+                        @if (o.Naprava != null)
+                        {
+                            @o.Naprava.n_ime
+                        }
+                        else
+                        {
+                            <span>N/A</span>
+                        }
+                        <br />
+                        <form style="float:right; margin-top:-45px" method="post" asp-page-handler="Delete" asp-route-id="@o.Id">
+                            <button type="submit" class="btn btn-danger">x</button>
+                        </form>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

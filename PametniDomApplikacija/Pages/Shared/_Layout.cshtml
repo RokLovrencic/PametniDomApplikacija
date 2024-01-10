@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -7,12 +9,51 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/PametniDomApplikacija.styles.css" asp-append-version="true" />
+
+
+    <style >
+
+        body {
+            background-image: linear-gradient(25deg,#d64c7f,#ee4758 50%);
+           
+        }
+
+
+
+        footer{
+        
+        background:black;
+     
+        
+        
+        }
+
+     
+
+        nav {
+            background: black !important;
+         
+        }
+
+        a{
+   
+         color: white !important
+         }
+
+      
+
+        
+        </style>
+
+
+
+
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">PametniDomApplikacija</a>
+                <a class="navbar-brand text-light" asp-area="" asp-page="/Index">PametniDomApplikacija</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,10 +61,36 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <a class="nav-link text-light" asp-area="" asp-page="/Index">Domov</a>
                         </li>
+                  
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                            <a class="nav-link text-light" asp-area="" asp-page="/OknoNaprav">Naprave</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-page="/OknoPorabeElektrike">Poraba Elektrike</a>
+                        </li>
+
+                        <a class="nav-link text-light" asp-area="" asp-page="/OknoObvestil">
+                            Obvestila
+                            @if (ViewData["SteviloObvestil"] != null && (int)ViewData["SteviloObvestil"] > 0)
+                            {
+                                <span style="background:white; color:black; border-radius:100px;padding:2px; padding-left:5px; padding-right:5px">@ViewData["SteviloObvestil"]</span>
+                            }
+                        </a>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-page="/RegisterOkno">Registracija</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-page="/LoginOkno">Prijava</a>
+
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-page="/LoginOkno">Odjava</a>
                         </li>
                     </ul>
                 </div>
@@ -32,12 +99,46 @@
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+
+            <div id="myModal" class="modal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h4 class="modal-title">Vaš PC nima zaznanega mikrofona!!!</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                        </div>
+
+
+                        <div class="modal-body">
+                            <p>Napaka!!!!</p>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
             @RenderBody()
         </main>
     </div>
 
+    <div id="openModal" style="position: fixed; bottom: 30px; right: 30px; background: white; border-radius: 100px; z-index: 99999 !important; width: 60px; height: 60px; text-align: center; display: flex; align-items: center; justify-content: center;">
+        <img style="width: 35px; height: auto;" src="https://cdn-icons-png.flaticon.com/512/1082/1082810.png" />
+    </div>
+
+    <script>
+        document.getElementById('openModal').addEventListener('click', function () {
+
+            $('#myModal').modal('show');
+        });
+    </script>
+
     <footer class="border-top footer text-muted">
-        <div class="container">
+        <div class="container text-light">
             &copy; 2023 - PametniDomApplikacija - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>

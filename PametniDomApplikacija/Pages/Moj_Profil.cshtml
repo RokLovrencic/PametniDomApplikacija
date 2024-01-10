@@ -1,0 +1,32 @@
+﻿
+@page
+@model PametniDomApplikacija.Pages.Moj_ProfilModel
+@{
+    ViewData["Title"] = "Moj_Profil";
+}
+
+<style>
+    .btn{
+        background-color: black;
+        color: #fff;
+        padding: 10px;
+        padding-right: 20px;
+        padding-left: 20px;
+        border: 1px solid black;
+        border-radius: 15px;
+    }
+
+
+</style>
+
+  <h1>Dobrodošli, @(Model.loggedUser?.uime ?? "Uporabnik")!</h1>
+
+
+<p>Naziv: @(Model.loggedUser?.uime ?? "Naziv")</p>
+<p>Enaslov: @(Model.loggedUser?.uenaslov ?? "Enaslov")</p>
+<p>Geslo: @(Model.loggedUser?.geslo ?? "Geslo")</p>
+
+
+
+
+<a class="btn" asp-area="" asp-page="/LoginOkno">Odjava</a>

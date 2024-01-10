@@ -1,0 +1,161 @@
+﻿@page
+@model PametniDomApplikacija.Pages.OknoNapravModel
+@{
+    ViewData["Title"] = "Naprave";
+}
+
+
+<style>
+
+
+    form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 400px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 16px;
+        border: 1px solid black;
+        border-radius: 15px;
+    }
+
+    span {
+        color: black;
+        font-size: 12px;
+        display: block;
+        margin-top: 4px;
+    }
+
+    button {
+        background-color: black;
+        color: #fff;
+        padding: 10px;
+        padding-right: 20px;
+        padding-left: 20px;
+        border: 1px solid black;
+        border-radius: 15px;
+    }
+
+
+    table{
+    
+    border:2px solid black;
+    width: 100% !important;
+    border-radius: 15px !important;
+    overflow:hidden;
+
+    }
+  
+
+    th{
+    
+    color:white;
+    background:black;
+    padding:5px;
+        border: 2px solid white;
+    }
+
+
+    td{
+    color:black;
+    background: white;
+        padding: 5px;
+        border: 2px solid black;
+    }
+
+    DelForm{
+        background-color: #fff;
+        padding: 0px !important;
+        border-radius: 15px;
+        box-shadow: none !important;
+        width: 10px !important;
+    }
+
+
+    DelButton{
+        background-color: black;
+        color: #fff;
+        padding: 10px;
+        padding-right: 20px;
+        padding-left: 20px;
+        border: 1px solid black;
+        border-radius: 15px;
+    }
+
+</style>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-7" style="margin-top: 15px">
+            <h2>Vse naprave uporabnika</h2>
+            <table>
+                <tr>
+                    <th>Id</th>
+                    <th>Naziv</th>
+                    <th>Prvič povezana</th>
+                    <th>Izbriši</th>
+                </tr>
+                @foreach (var naprava in Model.NapraveList)
+                {
+                    <tr>
+                        <td>@naprava.Id</td>
+                        <td>@naprava.n_ime</td>
+                        <td>@naprava.prvic_povezan</td>
+                        <td>
+                            <form style="width: 60px !important" class="DelForm" method="post" asp-page-handler="Delete" asp-route-napravaId="@naprava.Id">
+                                <button class="DelButton" type="submit">Odstrani</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+
+        <div class="col-lg-3" style="margin: 5%">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <form name="NapravaForm" method="post" asp-page-handler="Register">
+                    <h2>Dodaj novo napravo</h2>
+                    <div>
+                        <label asp-for="Novo_Ime_naprave">Naziv</label>
+                        <input placeholder="Naziv" asp-for="Novo_Ime_naprave" />
+                        <span asp-validation-for="Novo_Ime_naprave"></span>
+                    </div>
+                    <button type="submit">Poveži napravo</button>
+                </form>
+
+                <br />
+                <form name="EditNapravaForm" method="post" asp-page-handler="Edit">
+                    <h2>Uredi napravo</h2>
+                    <div>
+                        <label asp-for="EditNapravaId">ID naprave</label>
+                        <input placeholder="ID naprave" asp-for="EditNapravaId" />
+                    </div>
+                    <div>
+                        <label asp-for="Novo_Ime_naprave">Novi naziv</label>
+                        <input placeholder="Novi naziv" asp-for="Novo_Ime_naprave" />
+                        <span asp-validation-for="Novo_Ime_naprave"></span>
+                    </div>
+                    <button type="submit">Uredi napravo</button>
+                </form>
+
+                <br />
+       
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
